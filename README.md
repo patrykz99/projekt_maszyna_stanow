@@ -3,4 +3,5 @@
 
 Strona startowa:
 
-![image](https://github.com/SURZEDOWSKI/obj_projekt/assets/104080608/df542b28-2865-4917-bd49-7eafe5155ebd)
+![image](https://github.com/SURZEDOWSKI/obj_projekt/assets/104080608/999dc9a9-70d1-4e8a-beb1-d33585b32b12)
+
