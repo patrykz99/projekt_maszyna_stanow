@@ -10,7 +10,6 @@ class GUI():
         self.ticket_machine._set_appearance_mode("light")
         self.ticket_machine.config(bg="#92a3f6")  # Ustawienie koloru tła dla całego okna
         
-        
         #siatka 2x2
         self.ticket_machine.grid_rowconfigure((0,1), weight=1)
         self.ticket_machine.grid_columnconfigure((0, 1), weight=1)
@@ -36,6 +35,7 @@ class GUI():
         self.button_ulg = customtkinter.CTkButton(self.ticket_machine, text="Bilet ulgowy", height=50, text_color="#ffffff", hover_color="#0c6d09", corner_radius=7, fg_color="#000000", bg_color="#92a3f6",
                                                   command=self.select_ulgowy_bilet)
         self.button_ulg.grid(row=1, column=1)
+
     
     def select_normalny_bilet(self):
         self.clear_window()
@@ -76,6 +76,7 @@ class GUI():
             reszta = result[1]
             self.print_ticket(reszta)
         
+
     #funkcja sum 
     def sum_monety(self,price):
         sum = 0
@@ -89,6 +90,7 @@ class GUI():
             else:
                 print(f'Pozostało do wrzucenia: {price-sum} zł')
 
+
     def cancel_purchase(self):
         self.clear_window()
         self.selection_label = customtkinter.CTkLabel(self.ticket_machine, text="Zakup został anulowany", width=300, height=50, font=("Arial", 16), corner_radius=10, text_color="#000000")
@@ -96,6 +98,7 @@ class GUI():
         
         #dodanie ze po 5 sekundach sie zamyka program
         self.ticket_machine.after(5000, self.ticket_machine.destroy)
+
 
     def print_ticket(self, reszta):
         #wydruk biletu
@@ -117,6 +120,26 @@ class GUI():
                                                       corner_radius=10, text_color="#000000")
         self.selection_label.grid(row=2, column=0, columnspan=2, pady=10)
 
+        #wait for 3 seconds before switching to recipt window
+        self.ticket_machine.after(3000, self.paragon)
+
+
+    def paragon(self):
+        #new window asking whether user wants a receipt
+        self.clear_window()
+        self.selection_label = customtkinter.CTkLabel(self.ticket_machine, text="Czy chcesz paragon?", width=300, height=50, font=("Arial",16), corner_radius=10, text_color="#000000")
+        self.selection_label.grid(row=0, column=0, columnspan=2, pady=20)
+
+        #button to print receipt
+        self.button_yes = customtkinter.CTkButton(self.ticket_machine, text="Tak", height=50, text_color="#ffffff", hover_color="#c60b0b", corner_radius=7, fg_color="#000000", bg_color="#92a3f6",
+                                                command=self.print_receipt)
+        self.button_yes.grid(row=1, column=0, pady=10)
+
+        #button to not print receipt
+        self.button_no = customtkinter.CTkButton(self.ticket_machine, text="Nie", height=50, text_color="#ffffff", hover_color="#c60b0b", corner_radius=7, fg_color="#000000", bg_color="#92a3f6",
+                                                command=self.no_receipt)
+        self.button_no.grid(row=1, column=1, pady=10)
+
 
             
     def clear_window(self):
@@ -124,7 +147,24 @@ class GUI():
             widget.destroy()
     
     def display(self):
-        return self.ticket_machine.mainloop()   
+        return self.ticket_machine.mainloop()
+    
+    def print_receipt(self):
+        self.clear_window()
+        self.selection_label = customtkinter.CTkLabel(self.ticket_machine, text="Paragon został wydrukowany", width=300, height=50, font=("Arial",16), corner_radius=10, text_color="#000000")
+        self.selection_label.grid(row=0, column=0, columnspan=2, pady=20)
+        
+        #dodanie ze po 5 sekundach sie zamyka program
+        self.ticket_machine.after(5000, self.ticket_machine.destroy)
+
+    def no_receipt(self):
+        self.clear_window()
+        self.selection_label = customtkinter.CTkLabel(self.ticket_machine, text="Paragon nie został wydrukowany", width=300, height=50, font=("Arial",16), corner_radius=10, text_color="#000000")
+        self.selection_label.grid(row=0, column=0, columnspan=2, pady=20)
+        
+        #dodanie ze po 5 sekundach sie zamyka program
+        self.ticket_machine.after(5000, self.ticket_machine.destroy)
+        
 
 
 
