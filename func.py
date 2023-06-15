@@ -9,4 +9,3 @@ def sum(price):
         if sum > price:
             return sum, sum - price, True
             break
-
