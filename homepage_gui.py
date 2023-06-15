@@ -29,27 +29,27 @@ class GUI():
 
         # Tworzenie przycisków
         self.button_norm = customtkinter.CTkButton(self.ticket_machine, text="Bilet normalny", height=50, text_color="#000000", hover_color="#0c6d09", corner_radius=7, fg_color="#ffffff", bg_color="#92a3f6",
-                                                   command=self.select_bilet("normalny", 3))
+                                                   command=lambda: self.select_bilet("normalny", 3))
         self.button_norm.grid(row=1, column=0)
         
         self.button_ulg = customtkinter.CTkButton(self.ticket_machine, text="Bilet ulgowy", height=50, text_color="#ffffff", hover_color="#0c6d09", corner_radius=7, fg_color="#000000", bg_color="#92a3f6",
-                                                  command=self.select_bilet("ulgowy", 2))
+                                                  command=lambda: self.select_bilet("ulgowy", 2))
         self.button_ulg.grid(row=1, column=1)
 
 
-    def select_bilet(self, rodzaj_biletu, cena_biletu):
+    def select_bilet(self, bilet_rodzaj, cena):
         self.clear_window()
-        self.selection_label = customtkinter.CTkLabel(self.ticket_machine, text="Wybrano bilet "+rodzaj_biletu, width=300, height=50, font=("Arial",16), corner_radius=10, text_color="#000000")
+        self.selection_label = customtkinter.CTkLabel(self.ticket_machine, text="Wybrano bilet "+bilet_rodzaj, width=300, height=50, font=("Arial",16), corner_radius=10, text_color="#000000")
         self.selection_label.grid(row=0, column=0, columnspan=2, pady=20)
         
-        self.price_label = customtkinter.CTkLabel(self.ticket_machine, text="Do zapłaty: "+str(cena_biletu)+"zł", width=300, height=50, font=("Arial",16), corner_radius=10, text_color="#000000")
+        self.price_label = customtkinter.CTkLabel(self.ticket_machine, text="Do zapłaty: "+str(cena)+"zł", width=300, height=50, font=("Arial",16), corner_radius=10, text_color="#000000")
         self.price_label.grid(row=1, column=0, columnspan=2, pady=10)
         
         self.button_cancel = customtkinter.CTkButton(self.ticket_machine, text="Anuluj", height=50, text_color="#ffffff", hover_color="#c60b0b", corner_radius=7, fg_color="#000000", bg_color="#92a3f6",
                                              command=self.cancel_purchase)
         self.button_cancel.grid(row=2, column=0,columnspan=2)
         
-        price = cena_biletu  # Cena biletu
+        price = cena  # Cena biletu
         #obsluga monet
         result = self.sum_monety(price)
         if result[2] == True:
