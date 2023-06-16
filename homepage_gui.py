@@ -49,9 +49,6 @@ class GUI():
         #label that shows inserted coins value and updates it everytime a coin is inserted
         self.inserted_coins_label = customtkinter.CTkLabel(self.ticket_machine, text="Wrzucono: 0zł", width=300, height=50, font=("Arial",16), corner_radius=10, text_color="#000000")
         self.inserted_coins_label.grid(row=2, column=0, columnspan=2, pady=10)
-
-
-        
         
         self.button_cancel = customtkinter.CTkButton(self.ticket_machine, text="Anuluj", height=50, text_color="#ffffff", hover_color="#c60b0b", corner_radius=7, fg_color="#000000", bg_color="#92a3f6",
                                              command=self.cancel_purchase)
@@ -90,12 +87,13 @@ class GUI():
 
 
     def cancel_purchase(self):
+        
         self.clear_window()
         self.selection_label = customtkinter.CTkLabel(self.ticket_machine, text="Zakup został anulowany", width=300, height=50, font=("Arial", 16), corner_radius=10, text_color="#000000")
         self.selection_label.grid(row=0, column=0, columnspan=2, pady=20)
         
         #dodanie ze po 5 sekundach sie zamyka program
-        self.ticket_machine.after(3000, self.ticket_machine.menu)
+        self.ticket_machine.after(3000, self.menu)
 
 
     def print_ticket(self, reszta):
@@ -139,14 +137,15 @@ class GUI():
         self.button_no.grid(row=1, column=1, pady=10)
 
 
-            
     def clear_window(self):
         for widget in self.ticket_machine.winfo_children():
             widget.destroy()
     
+
     def display(self):
         return self.ticket_machine.mainloop()
     
+
     def print_receipt(self):
         self.clear_window()
         self.selection_label = customtkinter.CTkLabel(self.ticket_machine, text="Paragon został wydrukowany", width=300, height=50, font=("Arial",16), corner_radius=10, text_color="#000000")
