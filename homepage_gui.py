@@ -17,7 +17,9 @@ class GUI():
         # Tworzenie etykiety do wyświetlania wybranego biletu
         self.selection_label = customtkinter.CTkLabel(self.ticket_machine, text="", width=300, height=50, font=("Arial",16), corner_radius=10, text_color="black")
         self.selection_label.grid(row=0, column=0, columnspan=2, pady=20)
+        self.ticket_machine.after(500, self.menu) 
         
+    def menu(self):
         #top frame with text
         top_frame = customtkinter.CTkFrame(self.ticket_machine,corner_radius=0,fg_color="#92a3f6")
         top_frame.grid(row=0,column=0,columnspan=2,sticky="nsew")
@@ -49,6 +51,9 @@ class GUI():
         self.inserted_coins_label = customtkinter.CTkLabel(self.ticket_machine, text="Wrzucono: 0zł", width=300, height=50, font=("Arial",16), corner_radius=10, text_color="#000000")
         self.inserted_coins_label.grid(row=2, column=0, columnspan=2, pady=10)
 
+
+        
+        
         self.button_cancel = customtkinter.CTkButton(self.ticket_machine, text="Anuluj", height=50, text_color="#ffffff", hover_color="#c60b0b", corner_radius=7, fg_color="#000000", bg_color="#92a3f6",
                                              command=self.cancel_purchase)
         self.button_cancel.grid(row=3, column=0,columnspan=2)
@@ -73,10 +78,12 @@ class GUI():
                 # everytime a coin is inserted, the label is updated
                 self.inserted_coins_label.configure(text="Wrzucono: "+str(sum)+"zł")
                 if sum >= price:
-                    if sum > price:
-                        reszta = format(sum - price, ".2f")
-                        print(f'Wrzucona ilosc: {sum}, Reszta do wydania: {reszta}')
-                    return sum, reszta, True
+                    reszta = format(sum - price, ".2f")
+                    print(f'Wrzucona ilosc: {sum}, Reszta do wydania: {reszta}')
+                    if reszta != 0:
+                        return sum, reszta, True
+                    else:
+                        return sum, 0, True
                 else:
                     print(f'Pozostało do wrzucenia: {format(price - sum, ".2f")} zł')
             else:
@@ -89,7 +96,7 @@ class GUI():
         self.selection_label.grid(row=0, column=0, columnspan=2, pady=20)
         
         #dodanie ze po 5 sekundach sie zamyka program
-        self.ticket_machine.after(5000, self.ticket_machine.destroy)
+        self.ticket_machine.after(3000, self.ticket_machine.menu)
 
 
     def print_ticket(self, reszta):
@@ -113,10 +120,10 @@ class GUI():
         self.selection_label.grid(row=2, column=0, columnspan=2, pady=10)
 
         #wait for 3 seconds before switching to recipt window
-        self.ticket_machine.after(3000, self.paragon(reszta))
+        self.ticket_machine.after(3000, self.paragon)
 
 
-    def paragon(self, reszta):
+    def paragon(self):
         #new window asking whether user wants a receipt
         self.clear_window()
         self.selection_label = customtkinter.CTkLabel(self.ticket_machine, text="Czy chcesz paragon?", width=300, height=50, font=("Arial",16), corner_radius=10, text_color="#000000")
@@ -124,12 +131,12 @@ class GUI():
 
         #button to print receipt
         self.button_yes = customtkinter.CTkButton(self.ticket_machine, text="Tak", height=50, text_color="#ffffff", hover_color="#c60b0b", corner_radius=7, fg_color="#000000", bg_color="#92a3f6",
-                                                command=lambda: self.print_receipt(reszta))
+                                                command=self.print_receipt)
         self.button_yes.grid(row=1, column=0, pady=10)
 
         #button to not print receipt
         self.button_no = customtkinter.CTkButton(self.ticket_machine, text="Nie", height=50, text_color="#ffffff", hover_color="#c60b0b", corner_radius=7, fg_color="#000000", bg_color="#92a3f6",
-                                                command=lambda: self.no_receipt(reszta))
+                                                command=self.no_receipt)
         self.button_no.grid(row=1, column=1, pady=10)
 
 
@@ -141,25 +148,22 @@ class GUI():
     def display(self):
         return self.ticket_machine.mainloop()
     
-    def print_receipt(self, reszta):
+    def print_receipt(self):
         self.clear_window()
         self.selection_label = customtkinter.CTkLabel(self.ticket_machine, text="Paragon został wydrukowany", width=300, height=50, font=("Arial",16), corner_radius=10, text_color="#000000")
         self.selection_label.grid(row=0, column=0, columnspan=2, pady=20)
         
-        #label with amount of change
-        self.selection_label = customtkinter.CTkLabel(self.ticket_machine, text="Reszta: "+str(self.reszta)+"zł", width=300, height=50, font=("Arial",16), corner_radius=10, text_color="#000000")
-        self.selection_label.grid(row=1, column=0, columnspan=2, pady=20)
+        #dodanie ze po 3 sekundach program się restartuje
+        self.ticket_machine.after(3000, self.menu)
 
-        #dodanie ze po 5 sekundach sie zamyka program
-        self.ticket_machine.after(5000, self.ticket_machine.destroy)
 
-    def no_receipt(self, reszta):
+    def no_receipt(self):
         self.clear_window()
         self.selection_label = customtkinter.CTkLabel(self.ticket_machine, text="Paragon nie został wydrukowany", width=300, height=50, font=("Arial",16), corner_radius=10, text_color="#000000")
         self.selection_label.grid(row=0, column=0, columnspan=2, pady=20)
         
-        #dodanie ze po 5 sekundach sie zamyka program
-        self.ticket_machine.after(5000, self.ticket_machine.destroy)
+        #dodanie ze po 3 sekundach program się restartuje
+        self.ticket_machine.after(3000, self.menu)
 
 
 if __name__ == "__main__": 
