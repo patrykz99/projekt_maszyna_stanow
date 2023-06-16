@@ -1,4 +1,3 @@
-import customtkinter
 import customtkinter, time
 import tkinter as tk
 
@@ -164,9 +163,3 @@ class GUI():
         
         #dodanie ze po 3 sekundach program się restartuje
         self.ticket_machine.after(3000, self.menu)
-
-
-if __name__ == "__main__": 
-    
-    gui = GUI()
-    gui.display()
