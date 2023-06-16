@@ -93,7 +93,7 @@ class GUI():
         self.selection_label.grid(row=0, column=0, columnspan=2, pady=20)
         
         #dodanie ze po 5 sekundach sie zamyka program
-        self.ticket_machine.after(3000, self.menu)
+        self.ticket_machine.destroy()
 
 
     def print_ticket(self, reszta):
