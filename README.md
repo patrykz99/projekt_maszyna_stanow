@@ -1,4 +1,5 @@
 #Projekt na zajęcia z Programowania Obiektowego II
+
 #Kod wykonany przez Patryk Zioło, Szymon Urzędowski.
 **Koncepcja wizualna projektu**
 
