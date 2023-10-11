@@ -1,4 +1,5 @@
-# Programowanie obiektowe II - Projekt
+#Projekt na zajęcia z Programowania Obiektowego II
+#Kod wykonany przez Patryk Zioło, Szymon Urzędowski.
 **Koncepcja wizualna projektu**
 
 #Pierwsze okno
