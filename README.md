@@ -1,19 +1,33 @@
-#Projekt na zajęcia z Programowania Obiektowego II
-
-#Kod wykonany przez Patryk Zioło, Szymon Urzędowski.
+# Programowanie obiektowe II - Projekt
 **Koncepcja wizualna projektu**
 
 #Pierwsze okno
 
 ![image](https://github.com/SURZEDOWSKI/obj_projekt/assets/104080608/4d4c9cce-554e-4d78-8a43-2702015fd23b)
 
-Po wyborze np. biletu ulgowego:
+Przykład działania dla wyboru biletu ulgowego:
 
-![image](https://github.com/SURZEDOWSKI/obj_projekt/assets/104080608/6a1730ec-7c16-43d0-a003-e2c72472467b)
+![image](https://github.com/SURZEDOWSKI/obj_projekt/assets/104080608/7abe7d5b-2d6e-4320-accc-8c687a880796)
 
-Okno z wydrukiem:
+Wrzucenie 0.50zł: 
 
-![image](https://github.com/SURZEDOWSKI/obj_projekt/assets/104080608/ff4437d6-2cf6-4a7f-86f8-1a74eabf98f6)
+![image](https://github.com/SURZEDOWSKI/obj_projekt/assets/104080608/ca378c99-07db-4487-8166-a4aa019c6e9f)
+
+Wrzucenie 50 zł, a następnie informacja o wydruku biletu, a także ilości reszty do wydania:
+
+![image](https://github.com/SURZEDOWSKI/obj_projekt/assets/104080608/390dd87a-d156-47f0-bb63-e3324f9275a5)
+
+Wybór czy chcemy paragon:
+
+![image](https://github.com/SURZEDOWSKI/obj_projekt/assets/104080608/5a60bb95-c158-495a-a590-3af30f6f4c44)
+
+Po kliknięciu “Tak”:
+
+![image](https://github.com/SURZEDOWSKI/obj_projekt/assets/104080608/e82d07e1-0c5f-4038-9f5f-26faa34c4f8d)
+
+Następnie aplikacja wraca do początku:
+
+![image](https://github.com/SURZEDOWSKI/obj_projekt/assets/104080608/16187864-30fa-4e41-a215-e409b052f0e7)
 
 
 
